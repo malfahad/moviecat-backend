@@ -26,6 +26,14 @@ public class DbProvider {
     static Map<String, Object> configs = (Map<String, Object>) Configuration.config().get("db");
 
     static {
+        open();
+    }
+
+    public static void open() {
+
+        if (mongoClient != null) {
+            mongoClient.close();
+        }
 
         ServerAddress serverAddress = ServerAddressHelper.createServerAddress(configs.get("host").toString(), Integer.parseInt(configs.get("port").toString()));
         MongoCredential mongoCredential = MongoCredential.createCredential(configs.get("user").toString(), configs.get("database").toString(), configs.get("password").toString().toCharArray());

@@ -3,12 +3,11 @@ package com.moviecat.test.services;
 import com.moviecat.ds.DbProvider;
 import com.moviecat.model.Country;
 import com.moviecat.services.init.InitScripts;
-import com.moviecat.test.BaseTest;
 import dev.morphia.Datastore;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class InitScriptsTest extends BaseTest {
+public class InitScriptsTest {
 
     @Test
     void performInit() {
