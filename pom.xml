@@ -12,9 +12,13 @@
         <jdk.version>1.8</jdk.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+        <junit.version>5.5.2</junit.version>
+
         <log4j.version>2.12.1</log4j.version>
         <mongodb.driver.version>3.11.0</mongodb.driver.version>
+        <morphia.version>1.5.3</morphia.version>
         <snakeyaml.version>1.25</snakeyaml.version>
+        <vertx.version>3.8.1</vertx.version>
     </properties>
 
     <dependencies>
@@ -36,15 +40,30 @@
         <dependency>
             <groupId>dev.morphia.morphia</groupId>
             <artifactId>core</artifactId>
-            <version>1.5.3</version>
+            <version>${morphia.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.5.2</version>
+            <artifactId>simple-json-rpc-server</artifactId>
+            <groupId>com.github.arteam</groupId>
+            <version>0.10</version>
+        </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-web</artifactId>
+            <version>${vertx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-junit5</artifactId>
+            <version>${vertx.version}</version>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-web-client</artifactId>
+            <version>${vertx.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>

@@ -12,6 +12,11 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Map;
 
+/**
+ * This class connects to the MongoDB datasource.
+ * We create a MongoClient which is used to initialize a Morphia Object so we can manipulate objects as MongoDB collections.
+ */
+
 public class DbProvider {
 
     private static final Logger log = LogManager.getLogger(DbProvider.class);
@@ -35,10 +40,18 @@ public class DbProvider {
         log.info("Database Initialized Successfully!");
     }
 
+    /**
+     * Get the Morphia DataStore Connection
+     *
+     * @return The Morphia Datastore
+     */
     public static Datastore connection() {
         return database;
     }
 
+    /**
+     * Call before Application shutdown to cleanly close the database connection and prevent memory leaks
+     */
     public static void close() {
         if (mongoClient == null) return;
         mongoClient.close();

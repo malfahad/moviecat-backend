@@ -1,22 +1,36 @@
 package com.moviecat.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.morphia.annotations.Entity;
 import dev.morphia.annotations.Id;
 
 import java.util.Objects;
 
+/**
+ * Class to represent a country for Moviecat
+ */
+
 @Entity
-public class Country {
+public class Country extends DefaultModel {
 
     @Id
+    @JsonProperty
     String id;
+    @JsonProperty
     String name;
+    @JsonProperty
     String code;
 
-    public Country(String id, String name, String code) {
+    @JsonCreator
+    public Country(@JsonProperty String id, @JsonProperty String name, @JsonProperty String code) {
         this.id = id;
         this.name = name;
         this.code = code;
+    }
+
+    @JsonCreator
+    public Country() {
     }
 
     public String getId() {
