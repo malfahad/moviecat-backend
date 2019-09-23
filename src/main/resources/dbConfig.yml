@@ -4,3 +4,7 @@ db:
   user: moviecat
   password: n9X9Mih53Bm5
   database: moviecat
+
+server:
+  route: /v1/moviecat
+  port: 6636

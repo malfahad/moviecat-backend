@@ -1,7 +1,7 @@
 package com.moviecat.services.implementations;
 
 import com.moviecat.ds.DbProvider;
-import com.moviecat.model.DefaultModel;
+import dev.morphia.query.FindOptions;
 import dev.morphia.query.Query;
 import dev.morphia.query.UpdateOperations;
 import org.apache.logging.log4j.LogManager;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * A simple base service class for generic service calls
  */
-public class BaseService<T extends DefaultModel> {
+public class BaseService {
     private static final Logger log = LogManager.getLogger(BaseService.class);
 
     public static boolean isAlive() {
@@ -23,8 +23,21 @@ public class BaseService<T extends DefaultModel> {
         return DbProvider.connection().createQuery(obj).find().toList();
     }
 
-    public static <T> T fetchOne(Class obj, Object id) {
-        return (T) DbProvider.connection().createQuery(obj).where("id=" + id).first();
+    public static <T> List<T> fetch(Class obj, Integer limit, Integer page) {
+
+        if (page == null || page == 0) {
+            page = 1;
+        }
+
+        if (limit == null || limit == 0) {
+            limit = 10;
+        }
+
+        return DbProvider.connection().createQuery(obj).asList(new FindOptions().limit(limit).skip(limit * (page - 1)));
+    }
+
+    public static <T> T fetchOne(Class<T> obj, Object id) {
+        return DbProvider.connection().createQuery(obj).where("id=" + id).first();
     }
 
     public static <T> void save(T obj) {
@@ -45,5 +58,9 @@ public class BaseService<T extends DefaultModel> {
 
     public static <T> void delete(Query<T> obj) {
         DbProvider.connection().delete(obj);
+    }
+
+    public static <T> Long count(Class<T> obj) {
+        return DbProvider.connection().createQuery(obj).count();
     }
 }

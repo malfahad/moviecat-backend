@@ -12,6 +12,7 @@ public class VertxRouter {
     static RPCRouter rpcRouter = new RPCRouter();
 
     public static void handleRoutes(RoutingContext ctx) {
+        log.info("ctx.getBodyAsJson().encode(): -----> " + ctx.getBodyAsJson().encode());
         String resp = Configuration.server().handle(ctx.getBodyAsJson().encode(), rpcRouter);
 
         HttpServerResponse response = ctx.response();
