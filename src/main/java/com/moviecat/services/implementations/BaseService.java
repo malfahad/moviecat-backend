@@ -37,7 +37,7 @@ public class BaseService {
     }
 
     public static <T> T fetchOne(Class<T> obj, Object id) {
-        return DbProvider.connection().createQuery(obj).where("id=" + id).first();
+        return DbProvider.connection().createQuery(obj).field("id").equal(id).first();
     }
 
     public static <T> void save(T obj) {

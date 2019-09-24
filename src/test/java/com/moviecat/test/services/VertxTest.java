@@ -1,6 +1,5 @@
 package com.moviecat.test.services;
 
-import com.moviecat.test.BaseTest;
 import io.vertx.junit5.Checkpoint;
 import io.vertx.junit5.VertxExtension;
 import io.vertx.junit5.VertxTestContext;
@@ -12,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 @ExtendWith(VertxExtension.class)
-public class VertxTest extends BaseTest {
+public class VertxTest {
 
     @Test
     void requestResponseTest(Vertx vertx, VertxTestContext testContext) throws Throwable {

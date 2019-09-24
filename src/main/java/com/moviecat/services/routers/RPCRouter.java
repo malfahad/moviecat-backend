@@ -1,7 +1,6 @@
 package com.moviecat.services.routers;
 
 import com.github.arteam.simplejsonrpc.core.annotation.JsonRpcMethod;
-import com.github.arteam.simplejsonrpc.core.annotation.JsonRpcOptional;
 import com.github.arteam.simplejsonrpc.core.annotation.JsonRpcParam;
 import com.github.arteam.simplejsonrpc.core.annotation.JsonRpcService;
 import com.moviecat.ds.DbProvider;
@@ -31,18 +30,18 @@ public class RPCRouter {
     }
 
     @JsonRpcMethod("fetchCountriesLimit")
-    public List<Country> fetchCountriesLimit(@JsonRpcOptional @JsonRpcParam("limit") final int limit, @JsonRpcOptional @JsonRpcParam("page") final int page) {
+    public List<Country> fetchCountriesLimit(@JsonRpcParam("limit") final int limit, @JsonRpcParam("page") final int page) {
         return BaseService.fetch(Country.class, limit, page);
     }
 
     @JsonRpcMethod("createRole")
-    public void createRole(@JsonRpcOptional @JsonRpcParam("id") final String id, @JsonRpcOptional @JsonRpcParam("role") final String roles, @JsonRpcOptional @JsonRpcParam("description") final String description) {
+    public void createRole(@JsonRpcParam("id") final String id, @JsonRpcParam("role") final String roles, @JsonRpcParam("description") final String description) {
         Role role = new Role(id, roles, description);
         BaseService.save(role);
     }
 
     @JsonRpcMethod("count")
-    public Long count(@JsonRpcOptional @JsonRpcParam("item") final String item) {
+    public Long count(@JsonRpcParam("item") final String item) {
         Class clazz;
         try {
             clazz = Class.forName("com.moviecat.model." + item);
@@ -53,7 +52,7 @@ public class RPCRouter {
     }
 
     @JsonRpcMethod("fetchRole")
-    public Role fetchRole(@JsonRpcOptional @JsonRpcParam("id") final String id) {
+    public Role fetchRole(@JsonRpcParam("id") final String id) {
         return BaseService.fetchOne(Role.class, id);
     }
 
@@ -63,19 +62,19 @@ public class RPCRouter {
     }
 
     @JsonRpcMethod("fetchRolesLimit")
-    public List<Role> fetchRolesLimit(@JsonRpcOptional @JsonRpcParam("limit") final int limit, @JsonRpcOptional @JsonRpcParam("page") final int page) {
+    public List<Role> fetchRolesLimit(@JsonRpcParam("limit") final int limit, @JsonRpcParam("page") final int page) {
         return BaseService.fetch(Role.class, limit, page);
     }
 
     @JsonRpcMethod("updateRole")
-    public void updateRole(@JsonRpcOptional @JsonRpcParam("id") final String id, @JsonRpcOptional @JsonRpcParam("role") final String roles, @JsonRpcOptional @JsonRpcParam("description") final String description) {
+    public void updateRole(@JsonRpcParam("id") final String id, @JsonRpcParam("role") final String roles, @JsonRpcParam("description") final String description) {
         Query<Role> query = DbProvider.connection().createQuery(Role.class).where("id=" + id);
         UpdateOperations<Role> updates = DbProvider.connection().createUpdateOperations(Role.class).set("role", roles).set("description", description);
         BaseService.update(query, updates);
     }
 
     @JsonRpcMethod("deleteRole")
-    public void deleteRole(@JsonRpcOptional @JsonRpcParam("id") final String id) {
+    public void deleteRole(@JsonRpcParam("id") final String id) {
         Role role = BaseService.fetchOne(Role.class, id);
         BaseService.delete(role);
     }
