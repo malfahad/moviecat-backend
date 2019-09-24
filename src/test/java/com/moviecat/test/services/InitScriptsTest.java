@@ -2,10 +2,10 @@ package com.moviecat.test.services;
 
 import com.moviecat.ds.DbProvider;
 import com.moviecat.model.Country;
-import com.moviecat.services.init.InitScripts;
 import dev.morphia.Datastore;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import com.moviecat.servicesImpl.init.InitScripts;
 
 public class InitScriptsTest {
 
