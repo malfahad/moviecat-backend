@@ -12,7 +12,7 @@
 package com.moviecat.test.routers;
 
 import com.moviecat.model.Role;
-import org.junit.Before;
+import com.moviecat.routers.RPCRouter;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,12 +20,12 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("JSONRPC")
 class RPCRouterTest {
 
-    static RPCRouter routedMethods;
+    static RPCRouter routedMethods = new RPCRouter();
 
-    @BeforeAll
-    static void setUp() {
-        routedMethods = new RPCRouter();
-    }
+    //@BeforeAll
+    //static void setUp() {
+    //routedMethods = new RPCRouter();
+    //}
 
     @Nested
     @DisplayName("Countries Method Should")

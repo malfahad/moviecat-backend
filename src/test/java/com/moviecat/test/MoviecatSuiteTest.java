@@ -8,7 +8,7 @@ import org.junit.platform.suite.api.SelectPackages;
 import org.junit.runner.RunWith;
 
 @RunWith(JUnitPlatform.class)
-@SelectPackages({"com.moviecat.test.ds", "com.moviecat.test.services"})
+@SelectPackages({"com.moviecat.test.ds", "com.moviecat.test.services", "com.moviecat.test.models"})
 public class MoviecatSuiteTest {
 
     @BeforeAll
