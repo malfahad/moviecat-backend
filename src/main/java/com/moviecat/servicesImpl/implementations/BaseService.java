@@ -1,4 +1,4 @@
-package com.moviecat.services.implementations;
+package com.moviecat.servicesImpl.implementations;
 
 import com.moviecat.ds.DbProvider;
 import dev.morphia.query.FindOptions;
@@ -52,11 +52,7 @@ public class BaseService {
         DbProvider.connection().update(query, updates);
     }
 
-    public static <T> void delete(T obj) {
-        DbProvider.connection().delete(obj);
-    }
-
-    public static <T> void delete(Query<T> obj) {
+    public static <T> void delete(Class<T> clazz, Query<T> obj) {
         DbProvider.connection().delete(obj);
     }
 
