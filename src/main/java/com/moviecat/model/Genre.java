@@ -16,7 +16,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.morphia.annotations.Entity;
 import dev.morphia.annotations.Id;
 
-import javax.annotation.Generated;
 import java.util.Objects;
 
 @Entity
@@ -37,12 +36,7 @@ public class Genre {
     }
 
     @JsonCreator
-    public Genre(@JsonProperty String title, @JsonProperty String description) {
-        this.title = title;
-        this.description = description;
-    }
-
-    public Genre(String id, String title, String description) {
+    public Genre(@JsonProperty String id, @JsonProperty String title, @JsonProperty String description) {
         this.id = id;
         this.title = title;
         this.description = description;

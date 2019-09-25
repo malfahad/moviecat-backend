@@ -10,12 +10,12 @@
  *
  */
 
-package com.moviecat.test.routers;
+package com.moviecat.routers;
 
 import com.github.arteam.simplejsonrpc.core.annotation.JsonRpcMethod;
+import com.github.arteam.simplejsonrpc.core.annotation.JsonRpcOptional;
 import com.github.arteam.simplejsonrpc.core.annotation.JsonRpcParam;
 import com.github.arteam.simplejsonrpc.core.annotation.JsonRpcService;
-import com.github.arteam.simplejsonrpc.core.annotation.JsonRpcOptional;
 import com.moviecat.ds.DbProvider;
 import com.moviecat.model.Country;
 import com.moviecat.model.Genre;
@@ -142,7 +142,7 @@ public class RPCRouter {
     @JsonRpcMethod("deleteRole")
     public void deleteRole(@JsonRpcParam("id") final String id) {
         Query<Role> query = DbProvider.connection().createQuery(Role.class).field("id").equal(id);
-        BaseService.delete(Role.class, query);
+        BaseService.delete(query);
     }
 
     /**

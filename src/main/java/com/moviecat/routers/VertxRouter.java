@@ -9,7 +9,7 @@
  *
  */
 
-package com.moviecat.test.routers;
+package com.moviecat.routers;
 
 import com.moviecat.ds.Configuration;
 import io.vertx.core.http.HttpServerResponse;

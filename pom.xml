@@ -18,7 +18,7 @@
         <mongodb.driver.version>3.11.0</mongodb.driver.version>
         <morphia.version>1.5.3</morphia.version>
         <snakeyaml.version>1.25</snakeyaml.version>
-        <vertx.version>3.8.1</vertx.version>
+        <vertx.version>3.6.3</vertx.version>
     </properties>
 
     <dependencies>
@@ -128,7 +128,85 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <!--<plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.1.1</version>
+                <configuration>
+                    <finalName>moviecat-backend</finalName>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>-->
+
+            <!--<plugin>
+                <groupId>io.reactiverse</groupId>
+                <artifactId>vertx-maven-plugin</artifactId>
+                <version>1.0.20</version>
+                <executions>
+                    <execution>
+                        <id>vmp</id>
+                        <goals>
+                            <goal>initialize</goal>
+                            <goal>package</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <redeploy>true</redeploy>
+                    <archive>
+                        <manifest>
+                            <key>main-verticle</key>
+                            <name>com.moviecat.VerticleLaunchercher</name>
+                        </manifest>
+                        <manifest>
+                            <key>main-class</key>
+                            <name>io.vertx.core.Launcher</name>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>-->
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.4.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <manifestEntries>
+                                        <Main-Class>com.moviecat.verticle.VerticleLauncher</Main-Class>
+                                        <Main-Verticle>com.moviecat.verticle.MainVerticle</Main-Verticle>
+                                    </manifestEntries>
+                                </transformer>
+                            </transformers>
+                            <artifactSet/>
+                            <outputFile>${project.build.directory}/${project.artifactId}-${project.version}.jar
+                            </outputFile>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
+        <finalName>${project.artifactId}.jar</finalName>
     </build>
 
 </project>

@@ -1,8 +1,8 @@
-package com.moviecat.servicesImpl.http;
+package com.moviecat.verticle;
 
 import com.moviecat.ds.Configuration;
+import com.moviecat.routers.VertxRouter;
 import com.moviecat.servicesImpl.init.InitScripts;
-import com.moviecat.test.routers.VertxRouter;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
 import io.vertx.core.http.HttpServer;
@@ -13,9 +13,9 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Map;
 
-public class VertxHttpServer extends AbstractVerticle {
+public class MainVerticle extends AbstractVerticle {
 
-    private static final Logger log = LogManager.getLogger(VertxHttpServer.class);
+    private static final Logger log = LogManager.getLogger(MainVerticle.class);
     static Map<String, Object> configs = (Map<String, Object>) Configuration.config().get("server");
 
     public void start(Future<Void> startFuture) {
