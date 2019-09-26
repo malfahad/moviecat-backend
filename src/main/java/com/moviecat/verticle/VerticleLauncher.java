@@ -1,5 +1,6 @@
 package com.moviecat.verticle;
 
+import com.moviecat.ds.DbProvider;
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Vertx;
 import io.vertx.core.VertxOptions;
@@ -24,7 +25,13 @@ public class VerticleLauncher {
         DeploymentOptions options = new DeploymentOptions().setWorker(true);
         vertx.deployVerticle(MainVerticle::new, options, res -> {
 
-            Runtime.getRuntime().addShutdownHook(new Thread(() -> vertx.close()));
+            Runtime.getRuntime().addShutdownHook(
+                    new Thread(
+                            () -> {
+                                DbProvider.close();
+                                vertx.close();
+                            }
+                    ));
 
             if (res.succeeded()) {
                 log.info("Verticle deployed successfully with id : " + res.result());

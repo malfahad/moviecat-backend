@@ -1,8 +1,8 @@
 db:
   host: 34.228.205.4
   port: 27017
-  user: moviecat
-  password: n9X9Mih53Bm5
+  user: MOVIECAT_DATABASE_USER
+  password: MOVIECAT_DATABASE_PASSWORD
   database: moviecat
 
 server:
