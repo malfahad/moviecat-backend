@@ -15,7 +15,6 @@ import com.moviecat.ds.DbProvider;
 import com.moviecat.model.Genre;
 import com.moviecat.services.GenreServices;
 import com.moviecat.servicesImpl.implementations.BaseService;
-
 import dev.morphia.query.Query;
 import dev.morphia.query.UpdateOperations;
 import org.apache.logging.log4j.LogManager;
@@ -35,9 +34,9 @@ public class GenreServiceImpl implements GenreServices {
         log.info(genre.getTitle());
         Genre theSavedGenre = BaseService.fetchOne(Genre.class, genre.getId());
         log.info(theSavedGenre);
-        if(!theSavedGenre.getTitle().isEmpty()){
+        if (!theSavedGenre.getTitle().isEmpty()) {
             return theSavedGenre;
-        }else{
+        } else {
             return null;
         }
 
@@ -46,9 +45,9 @@ public class GenreServiceImpl implements GenreServices {
     @Override
     public Genre fetchGenre(String genreId) {
         Genre theSavedGenre = BaseService.fetchOne(Genre.class, genreId);
-        if(!theSavedGenre.getTitle().isEmpty()){
+        if (!theSavedGenre.getTitle().isEmpty()) {
             return theSavedGenre;
-        }else{
+        } else {
             return null;
         }
     }
@@ -56,9 +55,9 @@ public class GenreServiceImpl implements GenreServices {
     @Override
     public List<Genre> fetchGenres() {
         List<Genre> theGenres = BaseService.fetch(Genre.class);
-        if(theGenres.size() < 1){
+        if (theGenres.size() < 1) {
             return new ArrayList<>();
-        }else{
+        } else {
             return theGenres;
         }
     }
@@ -70,9 +69,9 @@ public class GenreServiceImpl implements GenreServices {
                 genre.getTitle()).set("description", genre.getDescription());
         BaseService.update(query, updates);
         Genre theSavedGenre = BaseService.fetchOne(Genre.class, genre.getId());
-        if(!theSavedGenre.getTitle().isEmpty() && theSavedGenre.getTitle() == genre.getTitle()){
+        if (!theSavedGenre.getTitle().isEmpty() && theSavedGenre.getTitle() == genre.getTitle()) {
             return theSavedGenre;
-        }else{
+        } else {
             return null;
         }
 
@@ -81,7 +80,7 @@ public class GenreServiceImpl implements GenreServices {
     @Override
     public void deleteGenre(String genreId) {
         Query<Genre> query = DbProvider.connection().createQuery(Genre.class).field("id").contains(genreId);
-        BaseService.delete(Genre.class, query);
+        BaseService.delete(query);
     }
 
     @Override

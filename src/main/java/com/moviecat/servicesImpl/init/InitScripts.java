@@ -1,9 +1,7 @@
 package com.moviecat.servicesImpl.init;
 
-import com.moviecat.ds.DbProvider;
 import com.moviecat.model.Country;
 import com.moviecat.servicesImpl.implementations.BaseService;
-import dev.morphia.Datastore;
 import io.vertx.core.Future;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,7 +17,6 @@ import java.util.Locale;
 public class InitScripts {
 
     private static final Logger log = LogManager.getLogger(InitScripts.class);
-    static Datastore ds = DbProvider.connection();
 
     public static Future<Void> init() {
         Future<Void> future = Future.future(fut -> {
@@ -37,7 +34,7 @@ public class InitScripts {
      * Call to populate all supported countries for the app
      */
     static void populateCountries() {
-        if (BaseService.fetchOne(Country.class, 1) == null) {
+        if (BaseService.fetch(Country.class).size() == 0) {
 
             Integer counter = 0;
             Locale[] locales = Locale.getAvailableLocales();
@@ -49,6 +46,9 @@ public class InitScripts {
                     continue;
                 }
                 country = new Country((++counter).toString(), locale.getDisplayCountry(), locale.getCountry());
+
+                log.info(counter + ": " + country);
+
                 countries.add(country);
             }
             BaseService.save(countries);

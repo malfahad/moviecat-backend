@@ -52,7 +52,11 @@ public class BaseService {
         DbProvider.connection().update(query, updates);
     }
 
-    public static <T> void delete(Class<T> clazz, Query<T> obj) {
+    public static <T> void delete(T obj) {
+        DbProvider.connection().delete(obj);
+    }
+
+    public static <T> void delete(Query<T> obj) {
         DbProvider.connection().delete(obj);
     }
 
