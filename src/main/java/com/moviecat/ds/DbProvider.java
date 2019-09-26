@@ -35,8 +35,8 @@ public class DbProvider {
             mongoClient.close();
         }
 
-        ServerAddress serverAddress = ServerAddressHelper.createServerAddress(configs.get("host").toString(), Integer.parseInt(configs.get("port").toString()));
-        MongoCredential mongoCredential = MongoCredential.createCredential(configs.get("user").toString(), configs.get("database").toString(), configs.get("password").toString().toCharArray());
+        ServerAddress serverAddress = ServerAddressHelper.createServerAddress(System.getenv(configs.get("host").toString()), Integer.parseInt(System.getenv(configs.get("port").toString())));
+        MongoCredential mongoCredential = MongoCredential.createCredential(System.getenv(configs.get("user").toString()), configs.get("database").toString(), System.getenv(configs.get("password").toString()).toCharArray());
         MongoClientOptions options = MongoClientOptions.builder().build();
         mongoClient = new MongoClient(serverAddress, mongoCredential, options);
 

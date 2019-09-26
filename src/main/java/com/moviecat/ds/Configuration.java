@@ -6,6 +6,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.yaml.snakeyaml.Yaml;
 
+import java.io.File;
+import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,7 +26,7 @@ public class Configuration {
         jsonRpcServer = JsonRpcServer.withCacheSpec(CacheBuilderSpec.disableCaching());
         try {
             Yaml yaml = new Yaml();
-            configuration = (Map<String, Object>) yaml.load(Configuration.class.getClassLoader().getResourceAsStream("dbConfig.yml"));
+            configuration = (Map<String, Object>) yaml.load(new FileReader(new File("dbConfig.yml")));
             log.info("Configurations Loaded Successfully!");
         } catch (Exception ex) {
             log.error("YAML loading error! : ", ex);
