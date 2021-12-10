@@ -14,7 +14,7 @@
 
         <junit.version>5.5.2</junit.version>
 
-        <log4j.version>2.12.1</log4j.version>
+        <log4j.version>2.15.0</log4j.version>
         <mongodb.driver.version>3.11.0</mongodb.driver.version>
         <morphia.version>1.5.3</morphia.version>
         <snakeyaml.version>1.25</snakeyaml.version>
